@@ -1,5 +1,5 @@
 {
-    "$schema": "./global_options_schema.json",
+    "$schema": "./global_options.schema.json",
     "data": [
         {
             "name": "repeat log",
