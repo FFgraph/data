@@ -1,0 +1,96 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "title": "Global options",
+    "description": "Schema which contains global options which can be used by FFgraph",
+    "type": "object",
+    "properties": {
+        "data": {
+            "description": "List of different global options",
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name for global options",
+                                "type": "string"
+                            },
+                            "description": {
+                                "description": "A detailed description of the option.",
+                                "type": "string"
+                            },
+                            "type": {
+                                "description": "Type of options",
+                                "type": "string",
+                                "enum": [
+                                    "boolean",
+                                    "string"
+                                ]
+                            },
+                            "flag": {
+                                "description": "The command-line flag associated with the option.",
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "description",
+                            "type",
+                            "flag"
+                        ]
+                    }
+                ],
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "string"
+                            },
+                            "choices": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": []
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "const": "boolean"
+                            },
+                            "support_no_prefix": {
+                                "type": "boolean"
+                            },
+                            "values": {
+                                "type": "object",
+                                "properties": {
+                                    "true": {
+                                        "type": "string"
+                                    },
+                                    "false": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "true",
+                                    "false"
+                                ]
+                            }
+                        },
+                        "required": [
+                            "support_no_prefix"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "data"
+    ]
+}
